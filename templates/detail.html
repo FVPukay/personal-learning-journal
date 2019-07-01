@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -18,7 +18,9 @@
                     <a class="button icon-right" href="new.html"><span>New Entry</span> <i class="material-icons">add</i></a>
                 </div>
             </div>
-        </header>
+        </header> -->
+        {% extends 'base.html' %}
+        {% block content %}
         <section>
             <div class="container">
                 <div class="entry-list single">
@@ -50,10 +52,11 @@
                 <p><a href="edit.html">Edit Entry</a></p>
             </div>
         </section>
-        <footer>
+        {% endblock %}
+        <!-- <footer>
             <div>
                 &copy; MyJournal
             </div>
         </footer>
     </body>
-</html>
+</html> -->
