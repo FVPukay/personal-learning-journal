@@ -1,6 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
+
+import forms
+import os
 
 app = Flask(__name__)
+app.secret_key = os.urandom(32)
 
 DEBUG = True
 HOST = 'localhost'
@@ -14,10 +18,12 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/entries/new')
+@app.route('/entries/new', methods=['GET', 'POST'])
 def new():
-    """The create view"""
-    return render_template('new.html')
+    form = forms.AddEntryForm()
+    if form.validate_on_submit():
+        return redirect(url_for('index'))
+    return render_template('new.html', form=form)
 
 
 @app.route('/entries/<id>')
