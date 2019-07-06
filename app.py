@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for
 
 import forms
+import models
 import os
 
 app = Flask(__name__)
@@ -22,6 +23,13 @@ def index():
 def new():
     form = forms.AddEntryForm()
     if form.validate_on_submit():
+        models.Entry.create(
+            title=form.title.data.strip(),
+            date=form.date.data,
+            time_spent=form.time_spent.data,
+            what_you_learned=form.what_you_learned.data.strip(),
+            resources_to_remember=form.resources_to_remember.data.strip()
+        )
         return redirect(url_for('index'))
     return render_template('new.html', form=form)
 
@@ -42,4 +50,5 @@ def edit(id):
 
 
 if __name__ == '__main__':
+    models.initialize()
     app.run(debug=DEBUG, host=HOST, port=PORT)
