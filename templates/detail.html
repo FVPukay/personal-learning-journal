@@ -24,7 +24,27 @@
         <section>
             <div class="container">
                 <div class="entry-list single">
+
+                  {% for post in journal_post %}
                     <article>
+                        <h1>{{ post.title }}</h1>
+                        <time datetime="{{ post.date }}">{{ post.date.strftime("%B %d, %Y") }}</time>
+                        <div class="entry">
+                            <h3>Time Spent: </h3>
+                            <p>{{ post.time_spent }} Minutes</p>
+                        </div>
+                        <div class="entry">
+                            <h3>What I Learned:</h3>
+                            <p>{{ post.what_you_learned }}</p>
+                        </div>
+                        <div class="entry">
+                            <h3>Resources to Remember:</h3>
+                            <p>{{ post.resources_to_remember }}</p>
+                        </div>
+                    </article>
+                  {% endfor %}
+
+                    <!-- <article>
                         <h1>The best day I’ve ever had</h1>
                         <time datetime="2016-01-31">January 31, 2016</time>
                         <div class="entry">
@@ -45,7 +65,8 @@
                                 <li><a href="">Ipsum dolor sit amet</a></li>
                             </ul>
                         </div>
-                    </article>
+                    </article> -->
+
                 </div>
             </div>
             <div class="edit">

@@ -16,7 +16,8 @@ PORT = 8000
 @app.route('/entries')
 def index():
     """The homepage / listing view"""
-    return render_template('index.html')
+    journal_posts = models.Entry.select().limit(100)
+    return render_template('index.html', journal_posts=journal_posts)
 
 
 @app.route('/entries/new', methods=['GET', 'POST'])
@@ -34,10 +35,11 @@ def new():
     return render_template('new.html', form=form)
 
 
-@app.route('/entries/<id>')
+@app.route('/entries/<int:id>')
 def detail(id):
     """The detail view"""
-    return render_template('detail.html', id=id)
+    journal_post = models.Entry.select().where(models.Entry.id == id)
+    return render_template('detail.html', journal_post=journal_post)
 
 
 @app.route('/entries/<id>/edit')
