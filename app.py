@@ -1,11 +1,17 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
+from forms import EntryForm
+from werkzeug.datastructures import MultiDict
+from flask_wtf.csrf import CSRFProtect
 
-import forms
+
+
 import models
 import os
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
+
+csrf = CSRFProtect(app)
 
 DEBUG = True
 HOST = 'localhost'
@@ -22,7 +28,7 @@ def index():
 
 @app.route('/entries/new', methods=['GET', 'POST'])
 def new():
-    form = forms.AddEntryForm()
+    form = EntryForm()
     if form.validate_on_submit():
         models.Entry.create(
             title=form.title.data.strip(),
@@ -38,14 +44,38 @@ def new():
 @app.route('/entries/<int:id>')
 def detail(id):
     """The detail view"""
-    journal_post = models.Entry.select().where(models.Entry.id == id)
+    journal_post = models.Entry.select().where(models.Entry.id == id).get()
     return render_template('detail.html', journal_post=journal_post)
 
 
-@app.route('/entries/<id>/edit')
+@app.route('/entries/<int:id>/edit', methods=['GET', 'POST'])
 def edit(id):
     """The edit view"""
-    return render_template('edit.html', id=id)
+    journal_post = models.Entry.select().where(models.Entry.id == id).get()
+    if request.method == 'GET':
+        form = EntryForm(
+            formdata=MultiDict({
+            'title': journal_post.title,
+            'date': str(journal_post.date),
+            'time_spent': journal_post.time_spent,
+            'what_you_learned': journal_post.what_you_learned,
+            'resources_to_remember': journal_post.resources_to_remember
+            })
+        )
+    else:
+        form = EntryForm()
+
+    if form.validate_on_submit():
+        # Edit entry in database
+        journal_post.title = form.title.data.strip()
+        journal_post.date = form.date.data
+        journal_post.time_spent = form.time_spent.data
+        journal_post.what_you_learned = form.what_you_learned.data.strip()
+        # TODO: Refactor the line below so it's <= 79 characters
+        journal_post.resources_to_remember = form.resources_to_remember.data.strip()
+        journal_post.save()
+        return redirect(url_for('index'))
+    return render_template('edit.html', form=form, journal_post=journal_post)
 
 
 ## TODO: Add delete route /entries/<id>/delete

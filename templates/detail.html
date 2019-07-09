@@ -25,24 +25,30 @@
             <div class="container">
                 <div class="entry-list single">
 
-                  {% for post in journal_post %}
                     <article>
-                        <h1>{{ post.title }}</h1>
-                        <time datetime="{{ post.date }}">{{ post.date.strftime("%B %d, %Y") }}</time>
+                        <h1>{{ journal_post.title }}</h1>
+                        <time datetime="{{ journal_post.date }}">{{ journal_post.date.strftime("%B %d, %Y") }}</time>
                         <div class="entry">
                             <h3>Time Spent: </h3>
-                            <p>{{ post.time_spent }} Minutes</p>
+                            <p>{{ journal_post.time_spent }} Minutes</p>
                         </div>
                         <div class="entry">
                             <h3>What I Learned:</h3>
-                            <p>{{ post.what_you_learned }}</p>
+                            <p>{{ journal_post.what_you_learned }}</p>
                         </div>
                         <div class="entry">
                             <h3>Resources to Remember:</h3>
-                            <p>{{ post.resources_to_remember }}</p>
+                            <p>{{ journal_post.resources_to_remember }}</p>
                         </div>
                     </article>
-                  {% endfor %}
+
+                  </div>
+              </div>
+              <div class="edit">
+                  <p><a href="{{ url_for('edit', id=journal_post.id) }}">Edit Entry</a></p>
+              </div>
+          </section>
+          {% endblock %}
 
                     <!-- <article>
                         <h1>The best day I’ve ever had</h1>
@@ -67,13 +73,8 @@
                         </div>
                     </article> -->
 
-                </div>
-            </div>
-            <div class="edit">
-                <p><a href="edit.html">Edit Entry</a></p>
-            </div>
-        </section>
-        {% endblock %}
+
+
         <!-- <footer>
             <div>
                 &copy; MyJournal

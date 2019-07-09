@@ -4,7 +4,7 @@ from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, NumberRange
 
 
-class AddEntryForm(FlaskForm):
+class EntryForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     date = DateField('Date', format='%Y-%m-%d', validators=[DataRequired()])
     time_spent = IntegerField('Time Spent', validators=[DataRequired(), NumberRange(min=1)])
