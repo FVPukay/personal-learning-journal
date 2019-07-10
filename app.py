@@ -1,9 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
-from forms import EntryForm
+from forms import EntryForm, CatchaForm
 from werkzeug.datastructures import MultiDict
 from flask_wtf.csrf import CSRFProtect
-
-
 
 import models
 import os
@@ -66,7 +64,6 @@ def edit(id):
         form = EntryForm()
 
     if form.validate_on_submit():
-        # Edit entry in database
         journal_post.title = form.title.data.strip()
         journal_post.date = form.date.data
         journal_post.time_spent = form.time_spent.data
@@ -79,6 +76,16 @@ def edit(id):
 
 
 ## TODO: Add delete route /entries/<id>/delete
+@app.route('/entries/<int:id>/delete', methods=['GET', 'POST'])
+def delete(id):
+    """The delete view"""
+    journal_post = models.Entry.select().where(models.Entry.id == id).get()
+    form = CatchaForm()
+    catcha_code = 'catsrock!'
+    if form.validate_on_submit() and form.catcha_code.data == catcha_code:
+        journal_post.delete_instance()
+        return redirect(url_for('index'))
+    return render_template('delete.html', form=form)
 
 
 if __name__ == '__main__':

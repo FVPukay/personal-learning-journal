@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {# Will complete design of delete.html in the end stages of development #}
+  {# For now am just allowing the user to delete journal entries #}
+  <div class="container">
+    <div class="edit-entry">
+      <h1>To delete this journal entry, enter to "Catcha" code below:</h1>
+      <p>Catcha Code: catsrock!</p>
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.catcha_code.label }} {{ form.catcha_code() }}
+        <input type="submit" value="Delete Entry" class="button">
+        <a href="#" class="button button-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

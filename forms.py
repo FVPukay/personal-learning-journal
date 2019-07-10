@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, TextAreaField
+from wtforms import StringField, IntegerField, TextAreaField, SubmitField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, NumberRange
 
@@ -14,3 +14,7 @@ class EntryForm(FlaskForm):
     resources_to_remember = TextAreaField(
         'Resources to remember', validators=[DataRequired()]
     )
+
+
+class CatchaForm(FlaskForm):
+    catcha_code = StringField('Catcha Code', validators=[DataRequired()])

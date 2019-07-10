@@ -46,7 +46,7 @@
               </div>
               <div class="edit">
                   <p><a href="{{ url_for('edit', id=journal_post.id) }}">Edit Entry</a></p>
-                  <p><a href="#">Delete Entry</a></p>
+                  <p><a href="{{ url_for('delete', id=journal_post.id) }}">Delete Entry</a></p>
               </div>
           </section>
           {% endblock %}
