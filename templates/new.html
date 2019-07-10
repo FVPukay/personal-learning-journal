@@ -51,7 +51,7 @@
                   {{ form.what_you_learned.label }} {{ form.what_you_learned }}
                   {{ form.resources_to_remember.label }} {{ form.resources_to_remember }}
                   <input type="submit" value="Publish Entry" class="button">
-                  <a href="#" class="button button-secondary">Cancel</a>
+                  <a href="{{ url_for('index') }}" class="button button-secondary">Cancel</a>
                 </form>
               </div>
             </div>
