@@ -17,4 +17,4 @@ class EntryForm(FlaskForm):
 
 
 class CatchaForm(FlaskForm):
-    catcha_code = StringField('Catcha Code', validators=[DataRequired()])
+    catcha_code = StringField('Confirm CATCHA below', validators=[DataRequired()])

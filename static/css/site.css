@@ -182,6 +182,24 @@ ul li a {
 	font-size: 18px;
 }
 
+/* The below CSS for this section is my code */
+
+.delete-entry {
+	text-align: center;
+	max-width: 800px;
+	margin: 70px 0;
+	padding: 70px 25% 70px 25%;
+	border: 2px solid #678f89;
+}
+
+.delete-entry a {
+	color: #678f89;
+}
+
+.delete-entry p span {
+	font-family: 'Special Elite', cursive;
+}
+
 
 
 /* ==========================================================================

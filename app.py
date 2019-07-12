@@ -81,7 +81,7 @@ def delete(id):
     """The delete view"""
     journal_post = models.Entry.select().where(models.Entry.id == id).get()
     form = CatchaForm()
-    catcha_code = 'catsrock!'
+    catcha_code = 'Meow!'
     if form.validate_on_submit() and form.catcha_code.data == catcha_code:
         journal_post.delete_instance()
         return redirect(url_for('index'))

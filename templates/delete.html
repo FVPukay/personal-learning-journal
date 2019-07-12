@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {# Will complete design of delete.html in the end stages of development #}
-  {# For now am just allowing the user to delete journal entries #}
   <div class="container">
-    <div class="edit-entry">
-      <h1>To delete this journal entry, enter to "Catcha" code below:</h1>
-      <p>Catcha Code: catsrock!</p>
+    <div class="delete-entry">
+      <h1><img src="https://img.icons8.com/ios-filled/50/000000/cat.png"> CATCHA!!!</h1>
+      <a href="https://icons8.com/icon/9243/cat" target="_blank">Cat icon by Icons8</a>
+      <p>Not a robot kitty?</p>
       <form method="POST">
         {{ form.hidden_tag() }}
-        {{ form.catcha_code.label }} {{ form.catcha_code() }}
+        {{ form.catcha_code.label }}
+        <p>CATCHA: <span><strong>Meow!</strong></span></p>
+        {{ form.catcha_code() }}
         <input type="submit" value="Delete Entry" class="button">
         <a href="{{ url_for('detail', id=journal_post.id) }}" class="button button-secondary">Cancel</a>
       </form>
