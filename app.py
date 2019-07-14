@@ -88,6 +88,12 @@ def delete(id):
     return render_template('delete.html', form=form, journal_post=journal_post, catcha_code=catcha_code)
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    """The page not found view"""
+    return render_template('404.html'), 404
+
+
 if __name__ == '__main__':
     models.initialize()
     app.run(debug=DEBUG, host=HOST, port=PORT)
