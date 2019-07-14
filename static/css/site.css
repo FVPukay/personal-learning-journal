@@ -200,6 +200,11 @@ ul li a {
 	font-family: 'Special Elite', cursive;
 }
 
+.error {
+	color: #c42116;
+	text-transform: capitalize;
+}
+
 
 
 /* ==========================================================================

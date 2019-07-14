@@ -85,7 +85,7 @@ def delete(id):
     if form.validate_on_submit() and form.catcha_code.data == catcha_code:
         journal_post.delete_instance()
         return redirect(url_for('index'))
-    return render_template('delete.html', form=form, journal_post=journal_post)
+    return render_template('delete.html', form=form, journal_post=journal_post, catcha_code=catcha_code)
 
 
 if __name__ == '__main__':

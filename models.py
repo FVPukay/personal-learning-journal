@@ -6,7 +6,7 @@ DATABASE = SqliteDatabase('journal.db')
 
 
 class Entry(Model):
-    title = CharField(max_length=50)
+    title = CharField()
     date = DateField()
     time_spent = IntegerField()
     what_you_learned = TextField()

@@ -1,0 +1,24 @@
+{% macro display_if_error(field, error_message) %}
+  {% if field.errors %}
+  {% for error in field.errors %}
+    <span class="error">{{ error_message }}</span>
+    <br>
+    <br>
+  {% endfor %}
+  {% endif %}
+{% endmacro %}
+
+{% macro if_top_level_errors(form) %}
+  {% if form.errors %}
+    <div class="error">
+      <h4>Error Summary</h4>
+      <ul>
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+          {% for error in field_errors %}
+            <li>{{ form[field_name].label }}: {{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endmacro %}

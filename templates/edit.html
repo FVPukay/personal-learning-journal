@@ -20,40 +20,30 @@
             </div>
         </header> -->
         {% extends 'base.html' %}
+        {% from 'macros.html' import display_if_error %}
+        {% from 'macros.html' import if_top_level_errors %}
         {% block content %}
 
         <section>
             <div class="container">
                 <div class="edit-entry">
-                  {% if form.errors %}
-                    <ul>
-                      {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-                        {% for error in field_errors %}
-                          <li>{{ form[field_name].label }}: {{ error }}</li>
-                        {% endfor %}
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
-                    <h2>Edit Entry</h2>
-                    <form method="POST">
-                      {{ form.hidden_tag() }}
-                      {{ form.title.label }} {{ form.title() }}
-                      {{ form.date.label }} {{ form.date() }}
-                      {{ form.time_spent.label }} {{ form.time_spent() }}
-
-                        {% if form.time_spent.errors %}
-                          {% for error in form.time_spent.errors %}
-                          <ul>
-                            <li>{{ "An integer greater than or equal to 1 is required" }}</li>
-                          </ul>
-                          {% endfor %}
-                        {% endif %}
-
-                      {{ form.what_you_learned.label }} {{ form.what_you_learned() }}
-                      {{ form.resources_to_remember.label }} {{ form.resources_to_remember() }}
-                      <input type="submit" value="Publish Entry" class="button">
-                      <a href="{{ url_for('detail', id=journal_post.id) }}" class="button button-secondary">Cancel</a>
-                    </form>
+                  <h2>Edit Entry</h2>
+                  {{ if_top_level_errors(form) }}
+                  <br>
+                  <form method="POST">
+                    {{ form.hidden_tag() }}
+                    {{ form.title.label }} {{ form.title() }}
+                      {{ display_if_error(form.title, error_message='Error: 40 characters or less required') }}
+                    {{ form.date.label }} {{ form.date() }}
+                    {{ form.time_spent.label }} {{ form.time_spent() }}
+                      {{ display_if_error(form.time_spent, error_message='Error: int between 1 and 9999999999 required') }}
+                    {{ form.what_you_learned.label }} {{ form.what_you_learned() }}
+                      {{ display_if_error(form.what_you_learned, error_message='Error: Text required') }}
+                    {{ form.resources_to_remember.label }} {{ form.resources_to_remember() }}
+                      {{ display_if_error(form.resources_to_remember, error_message='Error: Text required') }}
+                    <input type="submit" value="Publish Entry" class="button">
+                    <a href="{{ url_for('detail', id=journal_post.id) }}" class="button button-secondary">Cancel</a>
+                  </form>
                 </div>
             </div>
         </section>
