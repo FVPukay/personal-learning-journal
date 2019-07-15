@@ -1,7 +1,5 @@
 from peewee import *
 
-import datetime
-
 DATABASE = SqliteDatabase('journal.db')
 
 
