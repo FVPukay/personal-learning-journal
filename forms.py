@@ -17,7 +17,7 @@ class EntryForm(FlaskForm):
         validators=[DataRequired()
         ])
     time_spent = IntegerField(
-        'Time Spent',
+        'Time Spent (Minutes)',
         validators=[
         DataRequired(),
         NumberRange(
