@@ -1,34 +1,33 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, TextAreaField, SubmitField
+from wtforms import StringField, IntegerField, TextAreaField
 from wtforms.fields.html5 import DateField
-from wtforms.validators import (DataRequired, NumberRange, ValidationError,
-                                Length)
+from wtforms.validators import DataRequired, NumberRange, Length
 
 
 class EntryForm(FlaskForm):
     title = StringField(
         'Title',
         validators=[DataRequired(),
-        Length(max=40)  # Keeps titles nicely centered
-        ])
+                    Length(max=40)]  # Keeps titles nicely centered
+        )
     date = DateField(
         'Date',
         format='%Y-%m-%d',
-        validators=[DataRequired()
-        ])
+        validators=[DataRequired()]
+        )
     time_spent = IntegerField(
         'Time Spent (Minutes)',
         validators=[
-        DataRequired(),
-        NumberRange(
-            min=1,
-            max=9999999999,  # Prevents OverflowError: int to SQLite INTEGER
-            message="Must Be Integer Between 1 And 9999999999.")
+            DataRequired(),
+            NumberRange(
+                min=1,
+                max=9999999999,  # Prevents OverflowError int to SQLite INTEGER
+                message="Must Be Integer Between 1 And 9999999999.")
         ])
     what_you_learned = TextAreaField(
         'What you learned',
-         validators=[DataRequired()]
-         )
+        validators=[DataRequired()]
+        )
     resources_to_remember = TextAreaField(
         'Resources to remember',
         validators=[DataRequired()]
@@ -37,6 +36,6 @@ class EntryForm(FlaskForm):
 
 class CatchaForm(FlaskForm):
     catcha_code = StringField(
-    'Confirm CATCHA below',
-    validators=[DataRequired()
-    ])
+        'Confirm CATCHA below',
+        validators=[DataRequired()]
+        )
