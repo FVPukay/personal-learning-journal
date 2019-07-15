@@ -1,81 +1,29 @@
-<!-- <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MyJournal</title>
-        <link href="https://fonts.googleapis.com/css?family=Cousine:400" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Work+Sans:600" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="/static/css/normalize.css">
-        <link rel="stylesheet" href="/static/css/site.css">
-    </head>
-    <body>
-        <header>
-            <div class="container">
-                <div class="site-header">
-                    <a class="logo" href="index.html"><i class="material-icons">library_books</i></a>
-                    <a class="button icon-right" href="new.html"><span>New Entry</span> <i class="material-icons">add</i></a>
-                </div>
-            </div>
-        </header> -->
-        {% extends 'base.html' %}
-        {% from 'macros.html' import display_if_error %}
-        {% from 'macros.html' import if_top_level_errors %}
-        {% block content %}
-          <section>
-            <div class="container">
-              <div class="new-entry">
-                <h2>New Entry</h2>
-                {{ if_top_level_errors(form) }}
-                <br>
-                <form method="POST">
-                  {{ form.hidden_tag() }}
-                  {{ form.title.label }} {{ form.title }}
-                    {{ display_if_error(form.title, error_message='Error: 40 characters or less required') }}
-                  {{ form.date.label }} {{ form.date }}
-                  {{ form.time_spent.label }} {{ form.time_spent }}
-                    {{ display_if_error(form.time_spent, error_message='Error: int between 1 and 9999999999 required') }}
-                  {{ form.what_you_learned.label }} {{ form.what_you_learned }}
-                    {{ display_if_error(form.what_you_learned, error_message='Error: Text required') }}
-                  {{ form.resources_to_remember.label }} {{ form.resources_to_remember }}
-                    {{ display_if_error(form.resources_to_remember, error_message='Error: Text required') }}
-                  <input type="submit" value="Publish Entry" class="button">
-                  <a href="{{ url_for('index') }}" class="button button-secondary">Cancel</a>
-                </form>
-              </div>
-            </div>
-          </section>
+{% extends 'base.html' %}
+{% from 'macros.html' import display_if_error %}
+{% from 'macros.html' import if_top_level_errors %}
+{% block content %}
+  <section>
+    <div class="container">
+      <div class="new-entry">
+        <h2>New Entry</h2>
+        {{ if_top_level_errors(form) }}
+        <br>
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          {{ form.title.label }} {{ form.title }}
+            {{ display_if_error(form.title, error_message='Error: 40 characters or less required') }}
+          {{ form.date.label }} {{ form.date }}
+          {{ form.time_spent.label }} {{ form.time_spent }}
+            {{ display_if_error(form.time_spent, error_message='Error: int between 1 and 9999999999 required') }}
+          {{ form.what_you_learned.label }} {{ form.what_you_learned }}
+            {{ display_if_error(form.what_you_learned, error_message='Error: Text required') }}
+          {{ form.resources_to_remember.label }} {{ form.resources_to_remember }}
+            {{ display_if_error(form.resources_to_remember, error_message='Error: Text required') }}
+          <input type="submit" value="Publish Entry" class="button">
+          <a href="{{ url_for('index') }}" class="button button-secondary">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </section>
 
-
-        <!-- <section>
-            <div class="container">
-                <div class="new-entry">
-                    <h2>New Entry</h2>
-                    <form>
-                        <label for="title"> Title</label>
-                        <input id="title" type="text" name="title"><br>
-                        <label for="date">Date</label>
-                        <input id="date" type="date" name="date"><br>
-                        <label for="time-spent"> Time Spent</label>
-                        <input id="time-spent" type="text" name="timeSpent"><br>
-                        <label for="what-i-learned">What I Learned</label>
-                        <textarea id="what-i-learned" rows="5" name="whatILearned"></textarea>
-                        <label for="resources-to-remember">Resources to Remember</label>
-                        <textarea id="resources-to-remember" rows="5" name="ResourcesToRemember"></textarea>
-                        <input type="submit" value="Publish Entry" class="button">
-                        <a href="#" class="button button-secondary">Cancel</a>
-                    </form>
-                </div>
-            </div>
-        </section> -->
-
-        {% endblock %}
-
-        <!-- <footer>
-            <div>
-                &copy; MyJournal
-            </div>
-        </footer>
-    </body>
-</html> -->
+{% endblock %}

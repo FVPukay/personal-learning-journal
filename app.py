@@ -53,12 +53,12 @@ def edit(id):
     if request.method == 'GET':
         form = EntryForm(
             formdata=MultiDict({
-            'title': journal_post.title,
-            'date': str(journal_post.date),
-            'time_spent': journal_post.time_spent,
-            'what_you_learned': journal_post.what_you_learned,
-            'resources_to_remember': journal_post.resources_to_remember
-            })
+                'title': journal_post.title,
+                'date': str(journal_post.date),
+                'time_spent': journal_post.time_spent,
+                'what_you_learned': journal_post.what_you_learned,
+                'resources_to_remember': journal_post.resources_to_remember
+                })
         )
     else:
         form = EntryForm()
@@ -68,14 +68,13 @@ def edit(id):
         journal_post.date = form.date.data
         journal_post.time_spent = form.time_spent.data
         journal_post.what_you_learned = form.what_you_learned.data.strip()
-        # TODO: Refactor the line below so it's <= 79 characters
-        journal_post.resources_to_remember = form.resources_to_remember.data.strip()
+        journal_post.resources_to_remember = (
+            form.resources_to_remember.data.strip())
         journal_post.save()
         return redirect(url_for('index'))
     return render_template('edit.html', form=form, journal_post=journal_post)
 
 
-## TODO: Add delete route /entries/<id>/delete
 @app.route('/entries/<int:id>/delete', methods=['GET', 'POST'])
 def delete(id):
     """The delete view"""
@@ -85,7 +84,12 @@ def delete(id):
     if form.validate_on_submit() and form.catcha_code.data == catcha_code:
         journal_post.delete_instance()
         return redirect(url_for('index'))
-    return render_template('delete.html', form=form, journal_post=journal_post, catcha_code=catcha_code)
+    return render_template(
+        'delete.html',
+        form=form,
+        journal_post=journal_post,
+        catcha_code=catcha_code
+    )
 
 
 @app.errorhandler(404)
