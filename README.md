@@ -19,8 +19,19 @@ journal entries.
 Creating a Virtualenv is highly recommended.
 
 Please refer to the requirements.txt file to see a list of the dependencies
-but the following pip installs can be done:
+(matching the versions is the safest way to be sure the app works as expected)
+but the following pip installs can be done for quick setup:
 
-`pip install Flask`  
-`pip install Flask-WTF`  
+>`pip install Flask-WTF`  
 `pip install peewee`
+
+`Note:` `pip install Flask-WTF` should install Flask so `pip install Flask`
+should not be needed unless specific versions of Flask, peewee, etc are
+installed.
+
+The app can be run by using:
+>`python app.py`
+
+`Note:` In app.py debug is set to True.  Normally when an app is in production
+this is set to False but since this project is being reviewed I decided to
+leave this set to True.
