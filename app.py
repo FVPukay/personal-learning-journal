@@ -1,7 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request
-from forms import EntryForm, CatchaForm
-from werkzeug.datastructures import MultiDict
+from flask import Flask, render_template, redirect, url_for, request, g
 from flask_wtf.csrf import CSRFProtect
+from forms import EntryForm, CatchaForm
+from models import db_proxy
+from werkzeug.datastructures import MultiDict
+
 
 import models
 import os
@@ -14,6 +16,18 @@ csrf = CSRFProtect(app)
 DEBUG = True
 HOST = 'localhost'
 PORT = 8000
+
+
+@app.before_request
+def before_request():
+    g.db = db_proxy
+    g.db.connect()
+
+
+@app.after_request
+def after_request(response):
+    g.db.close()
+    return response
 
 
 @app.route('/')
