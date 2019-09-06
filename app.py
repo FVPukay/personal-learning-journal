@@ -18,18 +18,6 @@ HOST = 'localhost'
 PORT = 8000
 
 
-@app.before_request
-def before_request():
-    g.db = db_proxy
-    g.db.connect()
-
-
-@app.after_request
-def after_request(response):
-    g.db.close()
-    return response
-
-
 @app.route('/')
 @app.route('/entries')
 def index():
