@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, g
+from flask_wtf.csrf import CSRFError
 from flask_wtf.csrf import CSRFProtect
 from forms import EntryForm, CatchaForm
 from models import db_proxy
@@ -98,6 +99,11 @@ def delete(id):
 def page_not_found(error):
     """The page not found view"""
     return render_template('404.html'), 404
+
+
+@app.errorhandler(CSRFError)
+def handle_csrf_error(e):
+    return render_template('csrf_error.html', reason=e.description), 400
 
 
 if __name__ == '__main__':
