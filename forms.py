@@ -13,7 +13,8 @@ class EntryForm(FlaskForm):
     date = DateField(
         'Date',
         format='%Y-%m-%d',
-        validators=[DataRequired()]
+        validators=[DataRequired(),
+        render_kw={'placeholder': 'Enter YYYY-MM-DD'}]
         )
     time_spent = IntegerField(
         'Time Spent (Minutes)',
