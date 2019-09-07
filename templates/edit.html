@@ -10,7 +10,7 @@
       {{ if_top_level_errors(form) }}
       <br>
       <form method="POST">
-        {{ form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         {{ form.title.label }} {{ form.title() }}
           {{ display_if_error(form.title, error_message='Error: 40 characters or less required') }}
         {{ form.date.label }} {{ form.date() }}

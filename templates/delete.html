@@ -7,7 +7,7 @@
       <a href="https://icons8.com/icon/9243/cat" target="_blank">Cat icon by Icons8</a>
       <p>Not a robot kitty?</p>
       <form method="POST">
-        {{ form.csrf_token }}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         {{ form.catcha_code.label }}
         <p>CATCHA: <span><strong>Meow!</strong></span></p>
         {{ form.catcha_code() }}
