@@ -7,10 +7,9 @@ from werkzeug.datastructures import MultiDict
 
 
 import models
-import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(32)
+app.secret_key = 'gqq6qu$=y)d)i(@5^o82mzxb*ek(0z1_m7@ltsxtinv-by%0o+'
 
 csrf = CSRFProtect(app)
 
