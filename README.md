@@ -11,6 +11,7 @@ journal entries.
 `Framework:` Flask  
 `Database:` Sqlite3  
 `ORM:` Peewee
+`Hosted:` Heroku
 
 ##### Screenshots of the UI
 [Personal Learning Journal](https://www.flickr.com/photos/156561177@N03/albums/72157709664341772)
@@ -31,7 +32,3 @@ installed.
 
 The app can be run by using:
 >`python app.py`
-
-`Note:` In app.py debug is set to True.  Normally when an app is in production
-this is set to False but since this project is being reviewed I decided to
-leave this set to True.
