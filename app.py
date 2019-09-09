@@ -13,7 +13,7 @@ app.secret_key = 'gqq6qu$=y)d)i(@5^o82mzxb*ek(0z1_m7@ltsxtinv-by%0o+'
 
 csrf = CSRFProtect(app)
 
-DEBUG = True
+DEBUG = False
 HOST = 'localhost'
 PORT = 8000
 
