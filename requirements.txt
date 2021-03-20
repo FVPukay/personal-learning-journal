@@ -4,7 +4,7 @@ flask-heroku==0.1.9
 Flask-WTF==0.14.2
 gunicorn==19.9.0
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 peewee==3.9.6
 psycopg2==2.8.3
