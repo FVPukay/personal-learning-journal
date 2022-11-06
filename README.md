@@ -1,5 +1,7 @@
 # Personal Learning Journal
 * Users can to post, edit, and delete journal entries
+* This is a [Flask](https://flask.palletsprojects.com/en/2.2.x/) app
+* The ORM is [Peewee](http://docs.peewee-orm.com/en/latest/#)
 
 ## Backend
 * See [app.py](https://github.com/FVPukay/personal-learning-journal/blob/master/app.py) to view the routes, setup, and error handling
