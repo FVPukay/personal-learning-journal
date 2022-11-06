@@ -24,7 +24,7 @@
 ## Screenshots of Personal Learning Journal
 * See [these photos](https://www.flickr.com/photos/156561177@N03/albums/72157709664341772)
 
-## How to run work_log.py
+## How to run
 Creating a [Virtualenv](https://pythonbasics.org/virtualenv/) is highly recommended
 
 See [requirements.txt](https://github.com/FVPukay/personal-learning-journal/blob/master/requirements.txt) to view dependencies
