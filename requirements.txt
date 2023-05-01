@@ -1,5 +1,5 @@
 Click==7.0
-Flask==1.0.3
+Flask==2.3.2
 flask-heroku==0.1.9
 Flask-WTF==0.14.2
 gunicorn==19.9.0
